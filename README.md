@@ -11,4 +11,4 @@ Other Manufacturers:
 ![](https://github.com/moneill0/InsulinDataVis/blob/master/img/novo-nordisk.JPG)
 
 Hover feature:
-![](https://github.com/moneill0/InsulinDataVis/blob/master/img/other-manufacturers.JPG)
+![](https://github.com/moneill0/InsulinDataVis/blob/master/img/hover.JPG)
