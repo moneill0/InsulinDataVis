@@ -1,14 +1,21 @@
 Final Project - Insulin Prices in the U.S. versus other Countries 
 ===
 
-Eli Lilly:
+
+If you click on "Eli Lilly":
 ![](https://github.com/moneill0/InsulinDataVis/blob/master/img/eli-lilly.JPG)
 
-Novo Nordisk:
+
+
+If you click on "Novo Nordisk":
 ![](https://github.com/moneill0/InsulinDataVis/blob/master/img/novo-nordisk.JPG)
 
-Other Manufacturers:
+
+
+If you click on "Other Manufacturers":
 ![](https://github.com/moneill0/InsulinDataVis/blob/master/img/novo-nordisk.JPG)
+
+
 
 Hover feature:
 ![](https://github.com/moneill0/InsulinDataVis/blob/master/img/hover.JPG)
