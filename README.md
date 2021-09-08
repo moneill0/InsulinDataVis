@@ -1,4 +1,4 @@
-Final Project - Insulin Prices in the U.S. versus other Countries 
+Final Project - Insulin Prices
 ===
 &nbsp;&nbsp;  
 If you click on "Eli Lilly":
