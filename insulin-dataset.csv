@@ -1,0 +1,26 @@
+<<<<<<< HEAD,,,,,,,,
+n_country,Novo Nordisk,e_country,Eli Lilly,country,% savings,e_region,brand,b_price
+Egypt,5.58,Egypt,2.57,France,67,Africa,Lispro,180
+India,3.48,India,4.99,Italy,53,East Med,Admelog,291
+Pakistan,5.54,Nepal,3.7,UK,57,West Pac,Humalog,332
+Senegal,2.97,Pakistan,5.87,Japan,43,Eur,Novolog,351
+Argentina,42.78,Austria,76.69,Germany,51,SE Asia,Fiasp,348
+Congo,47.6,Congo,47.6,Spain,55,Americas,Apidra,362
+Indonesia,44.68,Costa Rica,51.21,Canada,65,,,
+Palestine,30.14,Indonesia,39.5,Australia,60,,,
+USA,61.32,Palestine,42.67,Average,56,,,
+Average,20.58,USA,53.05,,,,,
+=======,,,,,,,,
+n_country,n_price,e_country,e_price,country,% savings,e_region,brand,b_price
+Egypt,5.58,Egypt,2.57,France,67,Africa,Lispro,180
+India,3.48,India,4.99,Italy,53,East Med,Admelog,291
+Pakistan,5.54,Nepal,3.7,UK,57,West Pac,Humalog,332
+Senegal,2.97,Pakistan,5.87,Japan,43,Eur,Novolog,351
+Argentina,42.78,Austria,76.69,Germany,51,SE Asia,Fiasp,348
+Congo,47.6,Congo,47.6,Spain,55,Americas,Apidra,362
+Indonesia,44.68,Costa Rica,51.21,Canada,65,,,
+Palestine,30.14,Indonesia,39.5,Australia,60,,,
+USA,61.32,Palestine,42.67,Average,56,,,
+Average,20.58,USA,53.05,,,,,
+>>>>>>> 2c8adda13cefdd0344d8a22ad1fa16364aa25de8,,,,,,,,
+,,Average,24.04,,,,,

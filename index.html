@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+
+<style>
+    .arc:hover {
+        fill: white;
+    }
+
+    .tooltip {
+        position: absolute;
+        text-align: center;
+        width: 100px;
+        height: 20px;
+        padding: 6px;
+        margin-top: -20px;
+        font: 10px sans-serif;
+        background: #ddd;
+        pointer-events: none;
+    }
+
+    .btn-group button {
+        background-color: #98abc5;
+        border: 1px #6b486b;
+        color: white;
+        padding: 10px 24px;
+        cursor: pointer;
+        margin-left: 80px;
+    }
+</style>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Color scale -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+<div class="btn-group">
+    <button variant="outlined" color="red" onclick="update(eli_lilly)">Eli Lilly</button>
+    <button variant="outlined" color="red" onclick="update(novo)">Novo Nordisk</button>
+    <button variant="outlined" color="red" onclick="update(other)">Other Manufacturers</button>
+</div>
+
+<script>
+
+    var width = 450
+    height = 450
+    margin = 40
+
+    var radius = Math.min(width, height) / 2 - margin
+
+    var svg = d3.select("body")
+        .append("svg")
+        .attr("width", width + 900)
+        .attr("height", height + 500)
+        .append("g")
+
+    var words = svg.append("text")
+        .text("If 5 people - one from each income group (defined by the UN) - were to split the cost of a 10 mL ")
+        .attr("font-size", "20px")
+        .attr("x", 15)
+        .attr("y", 30)
+
+    svg.append("text")
+        .text("vial of insulin based on the cost of that vial in their country, it would look something like this…")
+        .attr("font-size", "20px")
+        .attr("x", 15)
+        .attr("y", 60)
+
+    svg.append("text")
+        .text("Click the above buttons to see how this varies across different manufacturers")
+        .attr("font-size", "20px")
+        .attr("x", 15)
+        .attr("y", 90)
+
+    d3.select(".btn-group")
+        .attr("x", 400)
+        .attr("y", 300)
+
+    var eli_lilly = { a: 10.38, b: 12.26, c: 22.64, d: 24.53, e: 30.19 }
+    var novo = { a: 12.12, b: 12.12, c: 23.23, d: 27.27, e: 25.25 }
+    var other = { a: 15.38, b: 17.31, c: 21.15, d: 0, e: 46.15 }
+
+    var color = d3.scaleOrdinal()
+        .domain(["a", "b", "c", "d", "e", "f"])
+        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"]);
+
+    update(eli_lilly)
+
+    function update(data) {
+
+        var pie = d3.pie()
+            .value(function (d) { return d.value; })
+            .sort(function (a, b) { console.log(a); return d3.ascending(a.key, b.key) })
+
+        var data_ready = pie(d3.entries(data))
+
+        var hover_color = "black";
+
+        var div = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("display", "none");
+
+        var u = svg.selectAll("path")
+            .data(data_ready)
+            //create a unique ID for each path
+            .attr('id', function (d) { return 'key_' + d.data.key })
+            .on("mouseover", function (d) {
+                div.style("display", "inline");
+                if (d.data.key == "a") {
+                    d3.select("#key_a")
+                        .attr("fill", hover_color)
+                    d3.select("#circle0")
+                        .attr("fill", hover_color)
+                }
+                if (d.data.key == "b") {
+                    d3.select("#key_b")
+                        .attr("fill", hover_color)
+                    d3.select("#circle1")
+                        .attr("fill", hover_color)
+                }
+                if (d.data.key == "c") {
+                    d3.select("#key_c")
+                        .attr("fill", hover_color)
+                    d3.select("#circle2")
+                        .attr("fill", hover_color)
+                }
+                if (d.data.key == "d") {
+                    d3.select("#key_d")
+                        .attr("fill", hover_color)
+                    d3.select("#circle3")
+                        .attr("fill", hover_color)
+                }
+                if (d.data.key == "e") {
+                    d3.select("#key_e")
+                        .attr("fill", hover_color)
+                    d3.select("#circle4")
+                        .attr("fill", hover_color)
+                }
+            })
+            .on("mousemove", function (d) {
+                div
+                    .style("left", (d3.event.pageX - 34) + "px")
+                    .style("top", (d3.event.pageY - 12) + "px")
+                if (d.data.key == "a")
+                    div
+                        .text("Dem. Repub. of Congo - 896%")
+                if (d.data.key == "b")
+                    div
+                        .text("Afganistan - 795%")
+                if (d.data.key == "c")
+                    div
+                        .text("Philippines - 219%")
+                if (d.data.key == "d")
+                    div
+                        .text("Brazil - 108%")
+                if (d.data.key == "e")
+                    div
+                        .text("United States - 14.47%")
+
+            })
+            .on("mouseout", function (d) {
+                setcolors(d)
+                div.style("display", "none");
+                if (d.data.key == "a") {
+                    d3.select("#key_a")
+                        .attr("fill", "#98abc5")
+                }
+                if (d.data.key == "b")
+                    d3.select("#key_b")
+                        .attr("fill", "#8a89a6")
+                if (d.data.key == "c")
+                    d3.select("#key_c")
+                        .attr("fill", "#7b6888")
+                if (d.data.key == "d")
+                    d3.select("#key_d")
+                        .attr("fill", "#6b486b")
+                if (d.data.key == "e")
+                    d3.select("#key_e")
+                        .attr("fill", "#a05d56")
+            })
+
+
+        // Build the pie chart
+        u
+            .enter()
+            .append('path')
+            .merge(u)
+            .text("Label")
+            .attr('transform', 'translate(400, 330)')
+            .transition()
+            .duration(1000)
+            .attr('d', d3.arc()
+                .innerRadius(0)
+                .outerRadius(radius)
+            )
+            .attr('fill', function (d) { return (color(d.data.key)) })
+            .attr("stroke", "white")
+            .style("stroke-width", "2px")
+            .style("opacity", 1)
+
+        u
+            .exit()
+            .remove()
+
+    }
+
+    function setcolors(d) {
+        d3.select("#circle0")
+            .attr("fill", "#98abc5")
+        d3.select("#circle1")
+            .attr("fill", "#8a89a6")
+        d3.select("#circle2")
+            .attr("fill", "#7b6888")
+        d3.select("#circle3")
+            .attr("fill", "#6b486b")
+        d3.select("#circle4")
+            .attr("fill", "#a05d56")
+    }
+
+    svg.append("circle")
+        .attr("id", "circle0")
+        .attr("r", 10)
+        .attr("cx", 700)
+        .attr("cy", 260)
+        .attr("fill", "#98abc5")
+
+    svg.append("text")
+        .text("Least Developed Countries")
+        .attr("font-size", "12px")
+        .attr("x", 720)
+        .attr("y", 263)
+
+    svg.append("circle")
+        .attr("id", "circle1")
+        .attr("r", 10)
+        .attr("cx", 700)
+        .attr("cy", 290)
+        .attr("fill", "#8a89a6")
+
+    svg.append("text")
+        .text("Low Income Countries")
+        .attr("font-size", "12px")
+        .attr("x", 720)
+        .attr("y", 294)
+
+    svg.append("circle")
+        .attr("id", "circle2")
+        .attr("r", 10)
+        .attr("cx", 700)
+        .attr("cy", 320)
+        .attr("fill", "#7b6888")
+
+    svg.append("text")
+        .text("Lower-Middle Income Countries")
+        .attr("font-size", "12px")
+        .attr("x", 720)
+        .attr("y", 323)
+
+    svg.append("circle")
+        .attr("id", "circle3")
+        .attr("r", 10)
+        .attr("cx", 700)
+        .attr("cy", 350)
+        .attr("fill", "#6b486b")
+
+    svg.append("text")
+        .text("Upper-Middle Income Countries")
+        .attr("font-size", "12px")
+        .attr("x", 720)
+        .attr("y", 355)
+
+    svg.append("circle")
+        .attr("id", "circle4")
+        .attr("r", 10)
+        .attr("cx", 700)
+        .attr("cy", 380)
+        .attr("fill", "#a05d56")
+
+    svg.append("text")
+        .text("High Income Countries")
+        .attr("font-size", "12px")
+        .attr("x", 720)
+        .attr("y", 385)
+
+
+    svg.append("text")
+        .text("Then, hover over each section to see an example of a country in this category, along with what percentage ")
+        .attr("font-size", "20px")
+        .attr("x", 15)
+        .attr("y", 600)
+
+    svg.append("text")
+        .text("of the amount of the average daily income it would take to purchase one vial of insulin in that country.")
+        .attr("font-size", "20px")
+        .attr("x", 15)
+        .attr("y", 620)
+
+
+
+
+
+
+
+</script>
